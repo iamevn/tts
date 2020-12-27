@@ -15,11 +15,14 @@ o  homes = {
 Vip:s/\nHOME \(-\?\d\+\) \(-\?\d\+\)/{r = \1, q = \2}, /g
 $xxA},
 {o{}O},
+{/    
+O  tiles = {
+%O  }
 /^NAME
 
 # Macro ready to copy and run:
 
-Vip:s/NAME \(.*\)/  name = '\1',Vip:s/PLAYERS \(.*\)/  players = '\1',Vip:s/^\(-\?\d\+\) \(-\?\d\+\) \(.\)\(.*\)$/    {r = \1, q = \2, terrain = '\3', rivers = '\4'},Vip:s/, rivers = ''//Vip:s/'d'/'desert'/eVip:s/'w'/'woods'/eVip:s/'p'/'pasture'/eVip:s/'r'/'rock'/eVip:s/'m'/'mountains'/eVip:s/'s'/'sea'/e{/^[^H][^O][^M][^E].*\n^HOMEo  homes = {Vip:s/\nHOME \(-\?\d\+\) \(-\?\d\+\)/{r = \1, q = \2}, /g$xxA},{o{}O},/^NAME
+Vip:s/NAME \(.*\)/  name = '\1',Vip:s/PLAYERS \(.*\)/  players = '\1',Vip:s/^\(-\?\d\+\) \(-\?\d\+\) \(.\)\(.*\)$/    {r = \1, q = \2, terrain = '\3', rivers = '\4'},Vip:s/, rivers = ''//Vip:s/'d'/'desert'/eVip:s/'w'/'woods'/eVip:s/'p'/'pasture'/eVip:s/'r'/'rock'/eVip:s/'m'/'mountains'/eVip:s/'s'/'sea'/e{/^[^H][^O][^M][^E].*\n^HOMEo  homes = {Vip:s/\nHOME \(-\?\d\+\) \(-\?\d\+\)/{r = \1, q = \2}, /g$xxA},{o{}O},{/    O  tiles = {%O  }/^NAME
 
 # Example input:
 
@@ -54,6 +57,7 @@ HOME 0 0
   name = 'river delta',
   players = '1',
   homes = {{r = 0, q = 0}},
+  tiles = {
     {r = -2, q = -1, terrain = 'rock'},
     {r = -2, q = 0, terrain = 'rock'},
     {r = -2, q = 1, terrain = 'woods'},
@@ -75,5 +79,6 @@ HOME 0 0
     {r = 2, q = -1, terrain = 'rock', rivers = '46'},
     {r = 2, q = 0, terrain = 'pasture', rivers = '61'},
     {r = 2, q = 1, terrain = 'sea'},
+  }
 },
 
