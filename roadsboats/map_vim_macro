@@ -1,3 +1,5 @@
+# Split out macro:
+
 Vip:s/NAME \(.*\)/  name = '\1',
 Vip:s/PLAYERS \(.*\)/  players = '\1',
 Vip:s/^\(-\?\d\+\) \(-\?\d\+\) \(.\)\(.*\)$/    {r = \1, q = \2, terrain = '\3', rivers = '\4'},
@@ -15,7 +17,11 @@ $xxA},
 {o{}O},
 /^NAME
 
+# Macro ready to copy and run:
+
 Vip:s/NAME \(.*\)/  name = '\1',Vip:s/PLAYERS \(.*\)/  players = '\1',Vip:s/^\(-\?\d\+\) \(-\?\d\+\) \(.\)\(.*\)$/    {r = \1, q = \2, terrain = '\3', rivers = '\4'},Vip:s/, rivers = ''//Vip:s/'d'/'desert'/eVip:s/'w'/'woods'/eVip:s/'p'/'pasture'/eVip:s/'r'/'rock'/eVip:s/'m'/'mountains'/eVip:s/'s'/'sea'/e{/^[^H][^O][^M][^E].*\n^HOMEo  homes = {Vip:s/\nHOME \(-\?\d\+\) \(-\?\d\+\)/{r = \1, q = \2}, /g$xxA},{o{}O},/^NAME
+
+# Example input:
 
 NAME river delta
 PLAYERS 1
@@ -41,3 +47,33 @@ HOME 0 0
 2 -1 r46
 2 0 p61
 2 1 s
+
+# Example output:
+
+{
+  name = 'river delta',
+  players = '1',
+  homes = {{r = 0, q = 0}},
+    {r = -2, q = -1, terrain = 'rock'},
+    {r = -2, q = 0, terrain = 'rock'},
+    {r = -2, q = 1, terrain = 'woods'},
+    {r = -1, q = -2, terrain = 'rock'},
+    {r = -1, q = -1, terrain = 'pasture', rivers = '24'},
+    {r = -1, q = 0, terrain = 'pasture', rivers = '14'},
+    {r = -1, q = 1, terrain = 'sea'},
+    {r = 0, q = -2, terrain = 'pasture'},
+    {r = 0, q = -1, terrain = 'woods', rivers = '25'},
+    {r = 0, q = 0, terrain = 'pasture'},
+    {r = 0, q = 1, terrain = 'pasture'},
+    {r = 0, q = 2, terrain = 'sea'},
+    {r = 1, q = -3, terrain = 'woods', rivers = '34'},
+    {r = 1, q = -2, terrain = 'pasture', rivers = '135'},
+    {r = 1, q = -1, terrain = 'pasture', rivers = '34'},
+    {r = 1, q = 0, terrain = 'woods', rivers = '14'},
+    {r = 1, q = 1, terrain = 'sea'},
+    {r = 2, q = -2, terrain = 'mountains', rivers = '6'},
+    {r = 2, q = -1, terrain = 'rock', rivers = '46'},
+    {r = 2, q = 0, terrain = 'pasture', rivers = '61'},
+    {r = 2, q = 1, terrain = 'sea'},
+},
+
